@@ -62,36 +62,73 @@ export default {
   data () {
     return {
       homePage,
-      menu: [{
-        label: '主页',
-        icon: 'fa-home',
-        child: [{
-          label: '主页1',
+      menu: [
+        {
+          label: '首页',
           icon: 'fa-home',
-          path: Home.path
-        }]
-      }, {
-        label: '表格管理',
-        path: '/table',
-        icon: 'fa-table',
-        child: [{
-          label: '基本表格',
-          path: '/table/base'
-        }, {
-          label: '排序表格',
-          path: '/table/sort'
-        }]
-      }, {
-        label: '图表管理',
-        path: '/charts',
-        icon: 'fa-bar-chart-o',
-        child: [{
-          label: '柱状图表',
-          path: '/charts/bar'
-        }]
-      }]
+          child: [{
+            label: '首页',
+            icon: 'fa-home',
+            path: Home.path
+          }]
+        }, 
+        {
+          label: '主播',
+          path: '/table',
+          icon: 'fa-table',
+          child: [{
+            label: '主播主页',
+            path: '/table/base'
+          },
+          // {
+          //   label: '直播信息',
+          //   path: '/table/sort'
+          // },
+          {
+            label: '管理主播',
+            path: '/table/manageAnchors'
+          },
+          // {
+          //   label: '主播档案',
+          //   path: '/table/anchorProfile'
+          // }
+          ]
+        }, 
+        {
+          label: '大哥',
+          path: '/charts',
+          icon: 'fa-bar-chart-o',
+          child: [
+            {
+              label: '大哥主页',
+              path: '/charts/bar'
+            },
+            // {
+            //   label: '直播信息',
+            //   path: '/charts/streainfo'
+            // },
+            // {
+            //   label: '大哥档案',
+            //   path: '/charts/bigfiles'
+            // }
+          ]
+        },
+        {
+          label: '系统设置',
+          path: '/system',
+          icon: 'el-icon-setting',
+          child: [{
+            label: '用户管理',
+            path: '/system/user'
+          },{
+            label: '角色管理',
+            path: '/system/role'
+          }]
+        },
+      ]
     }
   },
+  
   computed: {
     getDefaultActive () {
       const {meta, path} = this.$route

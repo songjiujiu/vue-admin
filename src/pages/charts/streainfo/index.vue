@@ -16,11 +16,11 @@
               <span>{{messageData.chat?messageData.chat:''}}</span>
             </div>
             <div class="text-guankan">
-              <span>观看</span>
-              <span>{{messageData.golddaddy?messageData.golddaddy:''}}</span>
+              <span>打赏金额</span>
+              <span>{{messageData.total_gift_monetary_value}}</span>
             </div>
             <div class="text-liwu">
-              <span>礼物</span>
+              <span>观看主播</span>
               <span>{{messageData.gift?messageData.gift:''}}</span>
             </div>
             <div style="float:right; margin-left:55%">
@@ -29,22 +29,15 @@
           </div>
         </div>
         <div class="content-message" style="border-top:1px solid #eee; margin-top:15px;">
-          <div class="top-content" style="width:100%;overflow: hidden;">
-            <span><font>打赏最多：</font><i>{{messageData.top1_golddaddy.role_name?messageData.top1_golddaddy.role_name:''}}</i><u>{{messageData.top1_golddaddy.gift_monetary_value}}</u></span>
-            <span><font>单次最高：</font><i>{{messageData.once_max_golddaddy.role_name?messageData.top1_golddaddy.role_name:''}}</i><u>{{messageData.once_max_golddaddy.gift_monetary_value}}</u></span>
-            <span><font>打赏人数：</font><u>{{messageData.audiences}}</u></span>
-
-            <span><font>打赏总额：</font><u>{{messageData.total_gift_monetary_value}}</u></span>
-          </div>
           <div style="margin-top:15px; width:100%;">
             <div style="float:left; margin-right:40px;">
               <el-checkbox-group v-model="resource.type" style="margin-top:12px;">
-                <el-checkbox label="弹幕" name="chat"></el-checkbox>
-                <el-checkbox label="礼物" name="gitf"></el-checkbox>
+                <el-checkbox label="弹幕" name="type"></el-checkbox>
+                <el-checkbox label="礼物" name="type"></el-checkbox>
               </el-checkbox-group>
             </div>
             <div style="float:left; margin-right:40px;">
-              <el-input v-model="value1" placeholder="请输入筛选内容"></el-input>
+              <el-input v-model="value1" placeholder="请输入主播名"></el-input>
             </div>
             <div style="float:left;">
               <el-date-picker
@@ -60,16 +53,14 @@
         </div>
         <div class="content-msg-item" style="width:100%; border-top:1px solid #eee; margin-top:15px;">
           <div style="display:flex; width:70%; margin-top:15px;">
+            <span style="color:#65c2ee; min-width:15%; margin-right:10px;">[主播直播间]</span>
             <span style="margin-right:10px;">[时间]</span>
-            <span style="color:#65c2ee;margin-right:10px;">[直播间粉丝]</span>
-            <span style="margin-right:10px;">[弹幕or礼物]</span>
-            <span style="margin-right:10px;">[记录]</span>
+            <span style="margin-right:10px;">[大哥行为]</span>
           </div>
           <div style="display:flex; width:70%; margin-top:10px;" v-for="(item,index) in messageListData" :key="index">
+            <span style="min-width:15%; color:#65c2ee; margin-right:10px;">{{item.anchor_role_name}}</span>
             <span style="margin-right:10px;">{{item.created_at}}</span>
-            <span style="color:#65c2ee;margin-right:10px;">{{item.main_person_role_name}}</span>
-            <span style="margin-right:10px;">{{item.gift_name}}</span>
-            <span style="margin-right:10px;">{{item.gift_name}} 人气票 {{item.gift_amount}}个</span>
+            <span style="margin-right:10px;">{{item.record_content}}</span>
           </div>
         </div>
       </div>
@@ -79,7 +70,7 @@
 </template>
 <script type="text/javascript">
 export default {
-  name: 'TableSort',
+  name: 'streainfo',
   data(){
     return {
       resource:{
@@ -99,7 +90,7 @@ export default {
       const {$refs, $api, form, $message, $notify, setUserInfo, $router} = this
       const roleIdNum = this.$route.query.roleId
       try{
-        const result = await $api.zhubo.zbmessage(roleIdNum)
+        const result = await $api.eldestbrother.golddaddyIdLive(roleIdNum)
         this.messageData = result.data
         this.zbrecordsFn(result.data)
       }catch(error){
@@ -118,14 +109,13 @@ export default {
         page:1,
       }
       try{
-        const result = await $api.zhubo.zbrecords(dataObj)
+        const result = await $api.eldestbrother.goldrRecords(dataObj)
         this.messageListData = result.data.records_info.records
       }catch(error){
         console.log(error)
       }
     },
   }
-
 }
 </script>
 <style lang="scss" scoped>

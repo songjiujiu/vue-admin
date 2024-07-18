@@ -6,13 +6,14 @@
 <template>
   <div class="default-layout-header">
     <div class="header-bar relative">
-      <div class="head-text flex">
+      <div class="head-text flex" style="justify-content:end; margin-right:55px;">
         <i class="el-icon-bell"/>
         <span>欢迎登录后台管理平台</span>
       </div>
       <el-dropdown class="head-right">
         <div class="head-user flex pointer">
-          <img :src="userInfo.avatar" class="head-avatar">
+          <!-- <img :src="userInfo.avatar" class="head-avatar"> -->
+          <i class="icon fa fa-user" style="color:#fff; width:36px;height:36px; font-size:28px; line-height:54px;"/>
           <span class="user-text" v-text="userInfo.name"/>
         </div>
         <el-dropdown-menu slot="dropdown" class="dropdown-menu">

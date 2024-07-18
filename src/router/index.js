@@ -14,7 +14,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes,
-  mode: 'hash', // default: hash ,history
+  mode: 'history', // default: hash ,history
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
@@ -32,7 +32,8 @@ router.beforeEach((to, from, next) => {
   }
 
   const isLogin = Store.getters[GET_IS_LOGIN]
-  const auth = to.meta.auth
+  // const auth = to.meta.auth
+  const auth = false
 
   if (auth === false || auth === 'false') {
     // 不需要验证的

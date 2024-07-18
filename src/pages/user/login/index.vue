@@ -8,7 +8,7 @@
 </route-config>
 <template>
   <div class="page-module login-container backgroundCover flex width_100 height_100">
-    <div class="login-panel" @keyup.enter="onSubmit">
+    <div class="login-panel">
       <div class="head-text align_center">
         <img src="./images/login_logo.png">
       </div>

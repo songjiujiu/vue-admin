@@ -30,13 +30,18 @@ const Http = async options => {
     // 将参数转成form表单的形式
     options.data = queryString(data)
   }
-
+  const getInfo = sessionStorage.getItem('adming_storage_user_info')
+  let tokenId = ''
+  if(getInfo){
+    tokenId = JSON.parse(getInfo).access_token
+  }
   // https://github.com/mzabriskie/axios
   // 创建一个axios实例
   const instance = axios.create({
     // 设置全局默认的headers
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer '+ tokenId
     },
     // 设置默认根地址
     baseURL: serverBaseUrl,
