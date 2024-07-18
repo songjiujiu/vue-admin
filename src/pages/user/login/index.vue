@@ -20,7 +20,7 @@
           <el-input type="password" placeholder="请输入账户密码：" v-model="form.password"/>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" class="width_100" icon="el-icon-check" @click="onSubmit" :loading="submitLoad"/>
+          <el-button type="primary" class="width_100" icon="el-icon-check" @click="onSubmit" :loading="submitLoad">登录</el-button>
         </el-form-item>
       </el-form>
     </div>
